@@ -91,7 +91,11 @@ public class VendasVIEW extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+ * Carrega os produtos com status 'Vendido' a partir do banco de dados
+ * e os exibe na tabela da tela de vendas.
+ * Atualiza dinamicamente o conteúdo da JTable.
+ */
     private void listarProdutosVendidos() {
     try {
         ProdutosDAO dao = new ProdutosDAO();
