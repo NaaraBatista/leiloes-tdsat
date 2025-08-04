@@ -210,6 +210,11 @@ private VendasVIEW vendasTela;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
+/**
+ * Método responsável por carregar todos os produtos do banco de dados
+ * e exibir seus dados na tabela principal da tela de listagem.
+ * Limpa a tabela antes de popular com os dados atualizados.
+ */
 private void listarProdutos() {
     try {
         ProdutosDAO produtosdao = new ProdutosDAO();
