@@ -141,13 +141,22 @@ public class listagemVIEW extends javax.swing.JFrame {
         
         ProdutosDAO produtosdao = new ProdutosDAO();
         
-        //produtosdao.venderProduto(Integer.parseInt(id));
+        produtosdao.venderProduto(Integer.parseInt(id));
         listarProdutos();
-    }//GEN-LAST:event_btnVenderActionPerformed
+      JOptionPane.showMessageDialog(null, "Produto vendido com sucesso!");
 
+if (vendasTela != null && vendasTela.isVisible()) {
+    vendasTela.atualizarTabela(); // atualiza a tabela em tempo real 💥
+}
+    }//GEN-LAST:event_btnVenderActionPerformed
+private VendasVIEW vendasTela;
     private void btnVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendasActionPerformed
-        //vendasVIEW vendas = new vendasVIEW(); 
-        //vendas.setVisible(true);
+       if (vendasTela == null || !vendasTela.isVisible()) {
+        vendasTela = new VendasVIEW();
+        vendasTela.setVisible(true);
+    } else {
+        vendasTela.toFront(); // traz pra frente se já estiver aberta
+    }
     }//GEN-LAST:event_btnVendasActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -201,6 +210,11 @@ public class listagemVIEW extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable listaProdutos;
     // End of variables declaration//GEN-END:variables
+/**
+ * Método responsável por carregar todos os produtos do banco de dados
+ * e exibir seus dados na tabela principal da tela de listagem.
+ * Limpa a tabela antes de popular com os dados atualizados.
+ */
 private void listarProdutos() {
     try {
         ProdutosDAO produtosdao = new ProdutosDAO();

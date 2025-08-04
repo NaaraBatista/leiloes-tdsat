@@ -141,7 +141,12 @@ public class cadastroVIEW extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_cadastroNomeActionPerformed
-
+/**
+ * Captura os dados preenchidos pelo usuário (nome e valor),
+ * valida o valor inserido,
+ * instancia um objeto ProdutosDTO com o status "A Venda",
+ * e chama o método para salvar o produto no banco de dados.
+ */
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
     ProdutosDTO produto = new ProdutosDTO();
