@@ -1,3 +1,6 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -140,17 +143,28 @@ public class cadastroVIEW extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroNomeActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        ProdutosDTO produto = new ProdutosDTO();
-        String nome = cadastroNome.getText();
-        String valor = cadastroValor.getText();
-        String status = "A Venda";
-        produto.setNome(nome);
-        produto.setValor(Integer.parseInt(valor));
-        produto.setStatus(status);
-        
-        ProdutosDAO produtodao = new ProdutosDAO();
-        produtodao.cadastrarProduto(produto);
-        
+
+    ProdutosDTO produto = new ProdutosDTO();
+    String nome = cadastroNome.getText();
+    String valorTexto = cadastroValor.getText().replace(",", "."); // troca vírgula por ponto
+    String status = "A Venda";
+
+    produto.setNome(nome);
+    
+    try {
+        double valor = Double.parseDouble(valorTexto); // agora pode usar Double!
+        produto.setValor(valor);
+    } catch (NumberFormatException ex) {
+        JOptionPane.showMessageDialog(null, "Valor inválido! Digite um número como 200,00.");
+        return; // sai do método para evitar erro
+    }
+
+    produto.setStatus(status);
+
+    ProdutosDAO produtodao = new ProdutosDAO();
+    produtodao.cadastrarProduto(produto);
+
+    JOptionPane.showMessageDialog(null, "Cadastro realizado com sucesso!");
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
